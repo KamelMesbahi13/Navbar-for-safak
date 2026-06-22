@@ -1,0 +1,221 @@
+/* ============================================
+   Safak Navbar - Admin Styles
+   ============================================ */
+
+.safak-navbar-admin {
+    max-width: 800px;
+}
+
+/* Header */
+.safak-navbar-admin__header {
+    margin: -10px -20px 30px;
+    padding: 24px 32px;
+    background: linear-gradient(135deg, #1A4A72 0%, #133a5b 100%);
+    border-bottom: 3px solid #E30213;
+}
+
+.safak-navbar-admin__header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.safak-navbar-admin__title {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.safak-navbar-admin__title .dashicons {
+    color: #ffffff !important;
+}
+
+.safak-navbar-admin__subtitle {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    margin: 4px 0 0;
+}
+
+.safak-navbar-admin__version {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Cards */
+.safak-navbar-admin__card {
+    background: #ffffff;
+    border: 1px solid #e0e5eb;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+.safak-navbar-admin__card-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #eef0f3;
+    background: #f8f9fb;
+}
+
+.safak-navbar-admin__card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1A4A72;
+    margin: 0;
+}
+
+.safak-navbar-admin__card-title .dashicons {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: #1A4A72;
+}
+
+.safak-navbar-admin__card-body {
+    padding: 24px;
+}
+
+/* Fields */
+.safak-navbar-admin__field {
+    margin-bottom: 18px;
+}
+
+.safak-navbar-admin__field:last-child {
+    margin-bottom: 0;
+}
+
+.safak-navbar-admin__label {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.safak-navbar-admin__hint {
+    color: #6b7280;
+    font-size: 12.5px;
+    margin-top: 4px;
+}
+
+.safak-navbar-admin__field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media screen and (max-width: 600px) {
+    .safak-navbar-admin__field-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Language Groups */
+.safak-navbar-admin__lang-group {
+    padding: 20px;
+    background: #f8f9fb;
+    border: 1px solid #eef0f3;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+.safak-navbar-admin__lang-group:last-child {
+    margin-bottom: 0;
+}
+
+.safak-navbar-admin__lang-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 14px;
+}
+
+/* Media Field */
+.safak-navbar-admin__media-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.safak-navbar-admin__media-preview {
+    width: 120px;
+    height: 60px;
+    background: #f6f7f9;
+    border: 1px solid #e0e5eb;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.safak-navbar-admin__media-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.safak-navbar-admin__media-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Info Box */
+.safak-navbar-admin__info-box {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(26, 74, 114, 0.04);
+    border: 1px solid rgba(26, 74, 114, 0.12);
+    border-radius: 10px;
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.6;
+}
+
+.safak-navbar-admin__info-box .dashicons {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.safak-navbar-admin__info-box ol {
+    margin: 8px 0 0;
+    padding-inline-start: 20px;
+}
+
+.safak-navbar-admin__info-box li {
+    margin-bottom: 6px;
+}
+
+.safak-navbar-admin__info-box a {
+    color: #1A4A72;
+    font-weight: 600;
+}
+
+/* Submit Button Override */
+.safak-navbar-admin .button-primary.button-large {
+    background: #1A4A72 !important;
+    border-color: #133a5b !important;
+    border-radius: 8px !important;
+    padding: 6px 32px !important;
+    font-size: 14px !important;
+    height: auto !important;
+    line-height: 2 !important;
+    transition: all 0.2s ease !important;
+}
+
+.safak-navbar-admin .button-primary.button-large:hover {
+    background: #E30213 !important;
+    border-color: #b8010f !important;
+}
