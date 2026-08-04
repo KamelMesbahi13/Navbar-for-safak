@@ -475,6 +475,7 @@
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 [dir="rtl"] .safak-navbar__mobile-menu {
@@ -612,11 +613,11 @@
    ============================================ */
 @media screen and (max-width: 960px) {
     .safak-navbar__menu-wrapper {
-        display: none;
+        display: none !important;
     }
 
     .safak-navbar__actions {
-        display: none;
+        display: none !important;
     }
 
     .safak-navbar__hamburger {
@@ -624,7 +625,7 @@
     }
 
     .safak-navbar__mobile-menu {
-        display: block;
+        display: block !important;
     }
 
     .safak-navbar__container {

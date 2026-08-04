@@ -47,7 +47,10 @@
         // Mobile Menu Toggle
         // ===========================
         if (hamburger && mobileMenu) {
-            hamburger.addEventListener('click', function () {
+            function toggleMenu(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
                 const isOpen = hamburger.classList.contains('safak-navbar__hamburger--active');
 
                 if (isOpen) {
@@ -55,10 +58,19 @@
                 } else {
                     openMobileMenu();
                 }
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+
+            // Also listen for touchend on iOS — some mobile browsers
+            // don't reliably fire 'click' on dynamically-shown buttons
+            hamburger.addEventListener('touchend', function (e) {
+                e.preventDefault();
+                toggleMenu(e);
             });
 
-            // Close on mobile menu link click
-            const mobileLinks = mobileMenu.querySelectorAll('.menu-item a');
+            // Close on mobile menu link or CTA button click
+            var mobileLinks = mobileMenu.querySelectorAll('.menu-item a, .safak-navbar__cta-btn--mobile');
             mobileLinks.forEach(function (link) {
                 link.addEventListener('click', function () {
                     closeMobileMenu();
@@ -75,19 +87,34 @@
         }
 
         function openMobileMenu() {
+            if (!hamburger || !mobileMenu) return;
             hamburger.classList.add('safak-navbar__hamburger--active');
             hamburger.setAttribute('aria-expanded', 'true');
             mobileMenu.classList.add('safak-navbar__mobile-menu--open');
             mobileMenu.setAttribute('aria-hidden', 'false');
+            // Force inline styles as fallback in case CSS classes are overridden
+            mobileMenu.style.display = 'block';
+            mobileMenu.style.visibility = 'visible';
+            mobileMenu.style.transform = 'translateX(0)';
             document.body.style.overflow = 'hidden';
         }
 
         function closeMobileMenu() {
+            if (!hamburger || !mobileMenu) return;
             hamburger.classList.remove('safak-navbar__hamburger--active');
             hamburger.setAttribute('aria-expanded', 'false');
             mobileMenu.classList.remove('safak-navbar__mobile-menu--open');
             mobileMenu.setAttribute('aria-hidden', 'true');
+            // Remove inline overrides so CSS takes back control
+            mobileMenu.style.visibility = '';
+            mobileMenu.style.transform = '';
             document.body.style.overflow = '';
+            // Delay removing display to allow the close transition to play
+            setTimeout(function () {
+                if (!hamburger.classList.contains('safak-navbar__hamburger--active')) {
+                    mobileMenu.style.display = '';
+                }
+            }, 400);
         }
 
         // ===========================

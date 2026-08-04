@@ -162,7 +162,7 @@ $all_menus = Safak_Navbar::get_all_menus();
                         </div>
                         <div class="safak-navbar-admin__field">
                             <label class="safak-navbar-admin__label" for="safak_navbar_button_link_ar"><?php esc_html_e( 'Button Link', 'safak-navbar' ); ?></label>
-                            <input type="text" id="safak_navbar_button_link_ar" name="safak_navbar_button_link_ar" value="<?php echo esc_attr( get_option( 'safak_navbar_button_link_ar', '#' ) ); ?>" class="regular-text" placeholder="https:// or #anchor" />
+                            <input type="text" id="safak_navbar_button_link_ar" name="safak_navbar_button_link_ar" value="<?php echo esc_attr( get_option( 'safak_navbar_button_link_ar', '#safak-popup' ) ); ?>" class="regular-text" placeholder="https:// or #anchor" />
                         </div>
                     </div>
                 </div>
@@ -177,7 +177,7 @@ $all_menus = Safak_Navbar::get_all_menus();
                         </div>
                         <div class="safak-navbar-admin__field">
                             <label class="safak-navbar-admin__label" for="safak_navbar_button_link_fr"><?php esc_html_e( 'Button Link', 'safak-navbar' ); ?></label>
-                            <input type="text" id="safak_navbar_button_link_fr" name="safak_navbar_button_link_fr" value="<?php echo esc_attr( get_option( 'safak_navbar_button_link_fr', '#' ) ); ?>" class="regular-text" placeholder="https:// or #anchor" />
+                            <input type="text" id="safak_navbar_button_link_fr" name="safak_navbar_button_link_fr" value="<?php echo esc_attr( get_option( 'safak_navbar_button_link_fr', '#safak-popup' ) ); ?>" class="regular-text" placeholder="https:// or #anchor" />
                         </div>
                     </div>
                 </div>
@@ -192,7 +192,7 @@ $all_menus = Safak_Navbar::get_all_menus();
                         </div>
                         <div class="safak-navbar-admin__field">
                             <label class="safak-navbar-admin__label" for="safak_navbar_button_link_en"><?php esc_html_e( 'Button Link', 'safak-navbar' ); ?></label>
-                            <input type="text" id="safak_navbar_button_link_en" name="safak_navbar_button_link_en" value="<?php echo esc_attr( get_option( 'safak_navbar_button_link_en', '#' ) ); ?>" class="regular-text" placeholder="https:// or #anchor" />
+                            <input type="text" id="safak_navbar_button_link_en" name="safak_navbar_button_link_en" value="<?php echo esc_attr( get_option( 'safak_navbar_button_link_en', '#safak-popup' ) ); ?>" class="regular-text" placeholder="https:// or #anchor" />
                         </div>
                     </div>
                 </div>

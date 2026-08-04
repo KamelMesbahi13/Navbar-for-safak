@@ -237,7 +237,10 @@ class Safak_Navbar {
         $logo_id    = get_option( 'safak_navbar_logo', '' );
         $logo_url   = $logo_id ? wp_get_attachment_image_url( $logo_id, 'medium' ) : '';
         $btn_text   = $this->get_ml_option( 'safak_navbar_button_text', __( 'ابدأ الآن', 'safak-navbar' ) );
-        $btn_link   = $this->get_ml_option( 'safak_navbar_button_link', '#' );
+        $btn_link   = $this->get_ml_option( 'safak_navbar_button_link', '#safak-popup' );
+        if ( empty( $btn_link ) || '#' === $btn_link ) {
+            $btn_link = '#safak-popup';
+        }
         $is_sticky  = get_option( 'safak_navbar_sticky', '1' );
         $site_name  = get_bloginfo( 'name' );
 
