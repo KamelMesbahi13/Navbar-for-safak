@@ -272,28 +272,36 @@
 
 /* ============================================
    Language Switcher — Circular Flag Style
+   Protected with #safak-navbar so theme button styles cannot override
    ============================================ */
 .safak-navbar__lang-switcher {
     position: relative;
 }
 
+#safak-navbar button.safak-navbar__lang-btn,
+#safak-navbar .safak-navbar__lang-btn,
 .safak-navbar__lang-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 12px 7px 7px;
-    background: transparent;
-    border: 1.5px solid var(--sfk-gray-200);
-    border-radius: var(--sfk-radius-pill);
-    cursor: pointer;
-    font-family: var(--sfk-font-inter);
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--sfk-gray-800);
-    transition: all var(--sfk-transition);
-    white-space: nowrap;
-    box-shadow: none;
-    outline: none;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 7px 12px 7px 7px !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 1.5px solid var(--sfk-gray-200) !important;
+    border-radius: var(--sfk-radius-pill) !important;
+    cursor: pointer !important;
+    font-family: var(--sfk-font-inter) !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: var(--sfk-gray-800) !important;
+    line-height: 1 !important;
+    transition: all var(--sfk-transition) !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+    outline: none !important;
+    text-align: start !important;
+    text-decoration: none !important;
 }
 
 /* Spacing: left in Arabic (RTL), right in English/French (LTR) */
@@ -305,9 +313,25 @@
     margin-right: 14px;
 }
 
-.safak-navbar__lang-btn:hover {
-    background: transparent;
-    border-color: var(--sfk-gray-400);
+#safak-navbar button.safak-navbar__lang-btn:hover,
+#safak-navbar button.safak-navbar__lang-btn:focus,
+#safak-navbar button.safak-navbar__lang-btn:active,
+#safak-navbar button.safak-navbar__lang-btn[aria-expanded="true"],
+#safak-navbar .safak-navbar__lang-btn:hover,
+#safak-navbar .safak-navbar__lang-btn:focus,
+#safak-navbar .safak-navbar__lang-btn:active,
+#safak-navbar .safak-navbar__lang-btn[aria-expanded="true"],
+.safak-navbar__lang-btn:hover,
+.safak-navbar__lang-btn:focus,
+.safak-navbar__lang-btn:active,
+.safak-navbar__lang-btn[aria-expanded="true"] {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: var(--sfk-gray-400) !important;
+    color: var(--sfk-gray-800) !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 /* Circular flag container */
@@ -332,18 +356,20 @@
     border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+#safak-navbar .safak-navbar__lang-short,
 .safak-navbar__lang-short {
     font-weight: 600;
     font-size: 14px;
-    color: var(--sfk-gray-800);
+    color: var(--sfk-gray-800) !important;
     letter-spacing: 0.2px;
 }
 
+#safak-navbar .safak-navbar__lang-arrow,
 .safak-navbar__lang-arrow {
     width: 10px;
     height: 6px;
     transition: transform var(--sfk-transition);
-    color: var(--sfk-gray-600);
+    color: var(--sfk-gray-600) !important;
     flex-shrink: 0;
 }
 
@@ -414,28 +440,49 @@
 
 /* ============================================
    Hamburger Menu Button
+   Protected with #safak-navbar so theme button styles cannot override
    ============================================ */
+#safak-navbar button.safak-navbar__hamburger,
+#safak-navbar .safak-navbar__hamburger,
 .safak-navbar__hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    width: 40px;
-    height: 40px;
-    padding: 0;
+    display: none !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    padding: 0 !important;
+    margin: 0 !important;
     background: transparent !important;
+    background-color: transparent !important;
     border: none !important;
-    cursor: pointer;
+    border-radius: 0 !important;
+    cursor: pointer !important;
     transition: none !important;
     box-shadow: none !important;
     outline: none !important;
+    text-align: center !important;
+    text-decoration: none !important;
 }
 
+#safak-navbar button.safak-navbar__hamburger:hover,
+#safak-navbar button.safak-navbar__hamburger:focus,
+#safak-navbar button.safak-navbar__hamburger:active,
+#safak-navbar .safak-navbar__hamburger:hover,
+#safak-navbar .safak-navbar__hamburger:focus,
+#safak-navbar .safak-navbar__hamburger:active,
 .safak-navbar__hamburger:hover,
 .safak-navbar__hamburger:focus,
 .safak-navbar__hamburger:active {
     background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .safak-navbar__hamburger-line {
@@ -574,15 +621,30 @@
     justify-content: center;
 }
 
+#safak-navbar .safak-navbar__mobile-actions button.safak-navbar__lang-btn,
+#safak-navbar .safak-navbar__mobile-actions .safak-navbar__lang-btn,
 .safak-navbar__mobile-actions .safak-navbar__lang-btn {
-    background: transparent;
-    border: none;
-    padding: 8px 12px;
-    gap: 10px;
-    box-shadow: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    padding: 8px 12px !important;
+    gap: 10px !important;
+    box-shadow: none !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    color: var(--sfk-gray-800) !important;
+}
+
+#safak-navbar .safak-navbar__mobile-actions button.safak-navbar__lang-btn:hover,
+#safak-navbar .safak-navbar__mobile-actions button.safak-navbar__lang-btn:focus,
+#safak-navbar .safak-navbar__mobile-actions .safak-navbar__lang-btn:hover,
+#safak-navbar .safak-navbar__mobile-actions .safak-navbar__lang-btn:focus {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    color: var(--sfk-gray-800) !important;
 }
 
 .safak-navbar__mobile-actions .safak-navbar__lang-dropdown {
@@ -615,6 +677,8 @@
         display: none !important;
     }
 
+    #safak-navbar button.safak-navbar__hamburger,
+    #safak-navbar .safak-navbar__hamburger,
     .safak-navbar__hamburger {
         display: flex !important;
     }

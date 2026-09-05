@@ -3,7 +3,7 @@
  * Plugin Name: Safak Navbar
  * Plugin URI: https://safak.ma
  * Description: A premium multilingual navigation bar with logo, menu, and CTA button. Supports Arabic, French, and English.
- * Version: 1.1.1
+ * Version: 1.1.3
  * Author: Safak
  * Author URI: https://safak.ma
  * Text Domain: safak-navbar
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SAFAK_NAVBAR_VERSION', '1.1.1' );
+define( 'SAFAK_NAVBAR_VERSION', '1.1.3' );
 define( 'SAFAK_NAVBAR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SAFAK_NAVBAR_URL', plugin_dir_url( __FILE__ ) );
 
@@ -310,7 +310,7 @@ class Safak_Navbar {
                 </div>
 
                 <!-- Mobile Hamburger -->
-                <button class="safak-navbar__hamburger" aria-label="<?php esc_attr_e( 'Toggle Menu', 'safak-navbar' ); ?>" aria-expanded="false">
+                <button type="button" class="safak-navbar__hamburger" aria-label="<?php esc_attr_e( 'Toggle Menu', 'safak-navbar' ); ?>" aria-expanded="false">
                     <span class="safak-navbar__hamburger-line"></span>
                     <span class="safak-navbar__hamburger-line"></span>
                     <span class="safak-navbar__hamburger-line"></span>
@@ -424,7 +424,7 @@ class Safak_Navbar {
         ob_start();
         ?>
         <div class="safak-navbar__lang-switcher">
-            <button class="safak-navbar__lang-btn" aria-expanded="false" aria-haspopup="true">
+            <button type="button" class="safak-navbar__lang-btn" aria-expanded="false" aria-haspopup="true">
                 <span class="safak-navbar__lang-flag"><?php echo $current_flag; ?></span>
                 <span class="safak-navbar__lang-short"><?php echo esc_html( $current['short'] ); ?></span>
                 <svg class="safak-navbar__lang-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none">
