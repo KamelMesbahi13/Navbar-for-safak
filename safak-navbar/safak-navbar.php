@@ -3,7 +3,7 @@
  * Plugin Name: Safak Navbar
  * Plugin URI: https://safak.ma
  * Description: A premium multilingual navigation bar with logo, menu, and CTA button. Supports Arabic, French, and English.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Safak
  * Author URI: https://safak.ma
  * Text Domain: safak-navbar
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'SAFAK_NAVBAR_VERSION', '1.1.0' );
+define( 'SAFAK_NAVBAR_VERSION', '1.1.1' );
 define( 'SAFAK_NAVBAR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SAFAK_NAVBAR_URL', plugin_dir_url( __FILE__ ) );
 

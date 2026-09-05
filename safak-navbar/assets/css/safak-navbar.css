@@ -31,6 +31,14 @@
     --sfk-navbar-height: 96px;
     --sfk-font-inter: inherit;
     --sfk-font-cairo: inherit;
+
+    /* CTA Button Variables (Customizable) */
+    --sfk-btn-color: var(--sfk-gray-800);
+    --sfk-btn-bg: transparent;
+    --sfk-btn-border-color: var(--sfk-gray-800);
+    --sfk-btn-hover-color: var(--sfk-primary);
+    --sfk-btn-hover-bg: rgba(26, 74, 114, 0.04);
+    --sfk-btn-hover-border-color: var(--sfk-primary);
 }
 
 /* Reset & Base */
@@ -226,9 +234,9 @@
     font-family: var(--sfk-font-inter);
     font-size: 14px;
     font-weight: 600;
-    color: var(--sfk-gray-800);
-    background: transparent;
-    border: 1.5px solid var(--sfk-gray-800);
+    color: var(--sfk-btn-color, var(--sfk-gray-800));
+    background: var(--sfk-btn-bg, transparent);
+    border: 1.5px solid var(--sfk-btn-border-color, var(--sfk-gray-800));
     border-radius: var(--sfk-radius-pill);
     text-decoration: none;
     cursor: pointer;
@@ -243,22 +251,21 @@
     letter-spacing: 0;
 }
 
-/* All button states — dark text, no background */
-.safak-navbar__cta-btn,
+/* Link and visited states inherit button text color so theme styles don't turn them blue/purple */
 .safak-navbar__cta-btn:link,
 .safak-navbar__cta-btn:visited {
-    color: var(--sfk-gray-800) !important;
-    text-decoration: none !important;
+    color: inherit;
+    text-decoration: none;
 }
 
 .safak-navbar__cta-btn:hover {
-    color: var(--sfk-primary) !important;
-    border-color: var(--sfk-primary);
-    background: rgba(26, 74, 114, 0.04);
+    color: var(--sfk-btn-hover-color, var(--sfk-primary));
+    border-color: var(--sfk-btn-hover-border-color, var(--sfk-primary));
+    background: var(--sfk-btn-hover-bg, rgba(26, 74, 114, 0.04));
 }
 
 .safak-navbar__cta-btn:active {
-    color: var(--sfk-primary-dark) !important;
+    color: var(--sfk-primary-dark);
     border-color: var(--sfk-primary-dark);
     background: rgba(26, 74, 114, 0.08);
 }
@@ -275,9 +282,8 @@
     align-items: center;
     gap: 8px;
     padding: 7px 12px 7px 7px;
-    background: none !important;
-    background-color: transparent !important;
-    border: 1.5px solid var(--sfk-gray-200) !important;
+    background: transparent;
+    border: 1.5px solid var(--sfk-gray-200);
     border-radius: var(--sfk-radius-pill);
     cursor: pointer;
     font-family: var(--sfk-font-inter);
@@ -286,7 +292,7 @@
     color: var(--sfk-gray-800);
     transition: all var(--sfk-transition);
     white-space: nowrap;
-    box-shadow: none !important;
+    box-shadow: none;
     outline: none;
 }
 
@@ -300,9 +306,8 @@
 }
 
 .safak-navbar__lang-btn:hover {
-    background: none !important;
-    background-color: transparent !important;
-    border-color: var(--sfk-gray-400) !important;
+    background: transparent;
+    border-color: var(--sfk-gray-400);
 }
 
 /* Circular flag container */
@@ -551,40 +556,30 @@
     align-items: center;
 }
 
-/* Mobile CTA — clean outline, matches desktop */
+/* Mobile CTA — layout adjustments */
 .safak-navbar__cta-btn--mobile {
     width: 100%;
     padding: 14px 24px;
     font-size: 15px;
     text-align: center;
-    border-radius: var(--sfk-radius-pill);
-    background: transparent !important;
-    border: 1.5px solid var(--sfk-gray-800) !important;
-    color: var(--sfk-gray-800) !important;
-}
-
-.safak-navbar__cta-btn--mobile:hover {
-    background: var(--sfk-gray-50) !important;
-    color: var(--sfk-primary) !important;
-    border-color: var(--sfk-primary) !important;
 }
 
 /* Mobile language switcher — minimal, no background */
 .safak-navbar__mobile-actions .safak-navbar__lang-switcher {
     align-self: center;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-left: 0;
+    margin-right: 0;
     position: relative;
     display: inline-flex;
     justify-content: center;
 }
 
 .safak-navbar__mobile-actions .safak-navbar__lang-btn {
-    background: transparent !important;
-    border: none !important;
+    background: transparent;
+    border: none;
     padding: 8px 12px;
     gap: 10px;
-    box-shadow: none !important;
+    box-shadow: none;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -699,6 +694,7 @@ body.safak-navbar-sticky-active {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
