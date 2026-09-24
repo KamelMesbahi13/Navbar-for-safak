@@ -1,0 +1,827 @@
+/* ==========================================================================
+   Via Firenze Luxury Navbar - Transparent to White Scrolled Aesthetic
+   Features:
+   - 100% Transparent Floating Navbar at top of page (White Logo, White Text, White Icons)
+   - Clean Solid White Background on scroll down (Black Logo, Black Text, Black Icons)
+   - Dual Logo Support: White Logo on transparent, Black Logo on white scroll
+   - Perfectly Balanced Symmetrical Left & Right Spacing
+   - Mathematically Centered Middle Navigation (1fr auto 1fr Grid)
+   - Font Family 100% Inherited from the Website
+   ========================================================================== */
+
+/* CSS Variables */
+:root {
+    --vf-bg: transparent;
+    --vf-bg-scrolled: #ffffff;
+    --vf-text: #ffffff;
+    --vf-text-scrolled: #000000;
+    --vf-border: rgba(255, 255, 255, 0.12);
+    --vf-border-scrolled: rgba(0, 0, 0, 0.08);
+    --vf-navbar-height: 64px;
+    --vf-font-logo: inherit;
+    --vf-font-nav: inherit;
+    --vf-transition: 0.28s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Inherit Font Family from Website for all elements */
+#via-firenze-navbar,
+#via-firenze-navbar *,
+#via-firenze-navbar *::before,
+#via-firenze-navbar *::after,
+.via-firenze-navbar,
+.via-firenze-navbar *,
+.via-firenze-navbar__logo-text,
+.via-firenze-navbar__menu-list .menu-item a,
+.via-firenze-navbar__search-input,
+.via-firenze-navbar__mobile-title,
+.via-firenze-navbar__mobile-cart-link {
+    font-family: inherit !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================================================
+   Main Header Container
+   ========================================================================== */
+.via-firenze-navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: var(--vf-navbar-height);
+    background-color: transparent !important;
+    border-bottom: 1px solid var(--vf-border);
+    z-index: 99999;
+    transition: background-color var(--vf-transition), box-shadow var(--vf-transition), border-color var(--vf-transition);
+}
+
+/* Sticky Header */
+.via-firenze-navbar--sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+/* ==========================================================================
+   Scrolled Down State: Solid White Background & Dark Elements
+   ========================================================================== */
+.via-firenze-navbar--scrolled {
+    background-color: var(--vf-bg-scrolled) !important;
+    border-bottom: 1px solid var(--vf-border-scrolled) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* WordPress Admin Bar Compatibility */
+.admin-bar .via-firenze-navbar--sticky {
+    top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+    .admin-bar .via-firenze-navbar--sticky {
+        top: 46px;
+    }
+}
+
+/* ==========================================================================
+   Container - Perfectly Symmetrical Left/Right Spacing & Centered Center
+   Uses CSS Grid (1fr auto 1fr) for mathematical screen-center alignment
+   ========================================================================== */
+.via-firenze-navbar__container {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    height: 100% !important;
+    width: 100% !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+    padding-left: 48px !important;
+    padding-right: 48px !important; /* Identical left & right spacing */
+}
+
+/* ==========================================================================
+   Column 1 (Left): Brand Logo (White on transparent, Black on scroll)
+   ========================================================================== */
+.via-firenze-navbar__logo {
+    grid-column: 1 !important;
+    justify-self: start !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    flex-shrink: 0;
+    transition: opacity var(--vf-transition);
+    z-index: 2;
+}
+
+.via-firenze-navbar__logo:hover {
+    opacity: 0.75;
+}
+
+.via-firenze-navbar__logo-text {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--vf-text) !important;
+    text-transform: uppercase;
+    white-space: nowrap;
+    line-height: 1;
+    transition: color var(--vf-transition);
+}
+
+/* Text Logo color change on scroll: turns black */
+.via-firenze-navbar--scrolled .via-firenze-navbar__logo-text {
+    color: var(--vf-text-scrolled) !important;
+}
+
+.via-firenze-navbar__logo-img {
+    height: 26px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: opacity var(--vf-transition);
+}
+
+/* Image Logo: Default (White) Logo shown by default, Scrolled (Black) Logo hidden */
+.via-firenze-navbar .via-firenze-navbar__logo-img--default {
+    display: block;
+}
+
+.via-firenze-navbar .via-firenze-navbar__logo-img--scrolled {
+    display: none;
+}
+
+/* Scrolled state: Show Black Scrolled Logo, Hide White Default Logo */
+.via-firenze-navbar--scrolled .via-firenze-navbar__logo-img--default {
+    display: none !important;
+}
+
+.via-firenze-navbar--scrolled .via-firenze-navbar__logo-img--scrolled {
+    display: block !important;
+}
+
+/* Fallback: If only default logo was uploaded without a scrolled logo, automatically invert to black on scroll */
+.via-firenze-navbar--scrolled .via-firenze-navbar__logo:not(:has(.via-firenze-navbar__logo-img--scrolled)) .via-firenze-navbar__logo-img--default {
+    display: block !important;
+    filter: brightness(0) !important;
+}
+
+/* ==========================================================================
+   Column 2 (Center): Perfectly Centered Navigation Menu
+   ========================================================================== */
+.via-firenze-navbar__nav {
+    grid-column: 2 !important;
+    justify-self: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+
+.via-firenze-navbar__menu-list {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 36px !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+.via-firenze-navbar__menu-list .menu-item {
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-block;
+}
+
+.via-firenze-navbar__menu-list .menu-item a {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--vf-text) !important;
+    text-decoration: none !important;
+    padding: 8px 0;
+    position: relative;
+    white-space: nowrap;
+    opacity: 1;
+    transition: opacity var(--vf-transition), color var(--vf-transition);
+}
+
+.via-firenze-navbar__menu-list .menu-item a:hover {
+    opacity: 0.65;
+    text-decoration: none !important;
+}
+
+/* Active / Current Page State (Transparent Mode: White underline) */
+.via-firenze-navbar__menu-list .menu-item.current-menu-item a,
+.via-firenze-navbar__menu-list .menu-item.current_page_item a {
+    opacity: 1;
+    font-weight: 700;
+}
+
+.via-firenze-navbar__menu-list .menu-item.current-menu-item a::after,
+.via-firenze-navbar__menu-list .menu-item.current_page_item a::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background-color: var(--vf-text);
+    transition: background-color var(--vf-transition);
+}
+
+/* Scrolled state: Menu links turn Black */
+.via-firenze-navbar--scrolled .via-firenze-navbar__menu-list .menu-item a {
+    color: var(--vf-text-scrolled) !important;
+}
+
+.via-firenze-navbar--scrolled .via-firenze-navbar__menu-list .menu-item a:hover {
+    opacity: 0.6 !important;
+}
+
+.via-firenze-navbar--scrolled .via-firenze-navbar__menu-list .menu-item.current-menu-item a::after,
+.via-firenze-navbar--scrolled .via-firenze-navbar__menu-list .menu-item.current_page_item a::after {
+    background-color: var(--vf-text-scrolled) !important;
+}
+
+/* ==========================================================================
+   Column 3 (Right): Action Icons (Search & Shopping Bag)
+   ========================================================================== */
+.via-firenze-navbar__actions {
+    grid-column: 3 !important;
+    justify-self: end !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 22px;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+/* Universal Button / Icon Link styling (Transparent State: White) */
+#via-firenze-navbar .via-firenze-navbar__icon-btn,
+.via-firenze-navbar .via-firenze-navbar__icon-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    cursor: pointer !important;
+    color: var(--vf-text) !important;
+    text-decoration: none !important;
+    transition: opacity var(--vf-transition), color var(--vf-transition), transform var(--vf-transition) !important;
+}
+
+#via-firenze-navbar .via-firenze-navbar__icon-btn:hover,
+#via-firenze-navbar .via-firenze-navbar__icon-btn:focus,
+.via-firenze-navbar .via-firenze-navbar__icon-btn:hover,
+.via-firenze-navbar .via-firenze-navbar__icon-btn:focus {
+    opacity: 0.65 !important;
+    background: transparent !important;
+    outline: none !important;
+}
+
+#via-firenze-navbar .via-firenze-navbar__icon-svg,
+.via-firenze-navbar .via-firenze-navbar__icon-svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke: currentColor !important;
+    display: block !important;
+}
+
+/* Scrolled state: Search & Cart Icons turn solid Black */
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__icon-btn,
+.via-firenze-navbar--scrolled .via-firenze-navbar__icon-btn,
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-toggle,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-toggle,
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__cart-link,
+.via-firenze-navbar--scrolled .via-firenze-navbar__cart-link {
+    color: #000000 !important;
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__icon-btn:hover,
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__icon-btn:focus,
+.via-firenze-navbar--scrolled .via-firenze-navbar__icon-btn:hover,
+.via-firenze-navbar--scrolled .via-firenze-navbar__icon-btn:focus {
+    color: #000000 !important;
+    opacity: 0.6 !important;
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__icon-svg,
+.via-firenze-navbar--scrolled .via-firenze-navbar__icon-svg,
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__icon-svg *,
+.via-firenze-navbar--scrolled .via-firenze-navbar__icon-svg * {
+    stroke: #000000 !important;
+    color: #000000 !important;
+}
+
+/* Cart Item Count Badge */
+#via-firenze-navbar .via-firenze-navbar__cart-badge,
+.via-firenze-navbar__cart-badge {
+    display: none;
+    position: absolute;
+    top: 2px;
+    right: -2px;
+    min-width: 15px;
+    height: 15px;
+    padding: 0 4px;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #000000;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 15px;
+    text-align: center;
+    transition: background-color var(--vf-transition), color var(--vf-transition);
+}
+
+.via-firenze-navbar__cart-badge.is-visible {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Scrolled Cart Badge: Black background, white number */
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__cart-badge,
+.via-firenze-navbar--scrolled .via-firenze-navbar__cart-badge {
+    background: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* ==========================================================================
+   Sleek Luxury Search Overlay
+   ========================================================================== */
+.via-firenze-navbar__search-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--vf-navbar-height);
+    background-color: rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 48px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease, background-color var(--vf-transition);
+    border-bottom: 1px solid var(--vf-border);
+}
+
+.via-firenze-navbar__search-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Scrolled Search Overlay: Crisp white with dark text */
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-overlay,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-overlay {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid var(--vf-border-scrolled) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.via-firenze-navbar__search-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+    gap: 24px;
+}
+
+.via-firenze-navbar__search-form {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    transition: border-color var(--vf-transition);
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-form,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-form {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
+}
+
+.via-firenze-navbar__search-form:focus-within {
+    border-color: #ffffff;
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-form:focus-within,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-form:focus-within {
+    border-color: #000000 !important;
+}
+
+.via-firenze-navbar__search-input {
+    width: 100%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 0;
+    transition: color var(--vf-transition);
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-input,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-input {
+    color: #000000 !important;
+}
+
+.via-firenze-navbar__search-input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 2px;
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-input::placeholder,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-input::placeholder {
+    color: rgba(0, 0, 0, 0.45) !important;
+}
+
+.via-firenze-navbar__search-submit {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    transition: opacity var(--vf-transition), color var(--vf-transition);
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-submit,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-submit {
+    color: #000000 !important;
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-submit svg,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-submit svg,
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-submit svg *,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-submit svg * {
+    stroke: #000000 !important;
+    color: #000000 !important;
+}
+
+.via-firenze-navbar__search-submit:hover {
+    opacity: 1;
+}
+
+.via-firenze-navbar__search-close {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    opacity: 0.7;
+    transition: opacity var(--vf-transition), transform var(--vf-transition), color var(--vf-transition);
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-close,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-close {
+    color: #000000 !important;
+}
+
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-close svg,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-close svg,
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__search-close svg *,
+.via-firenze-navbar--scrolled .via-firenze-navbar__search-close svg * {
+    stroke: #000000 !important;
+    color: #000000 !important;
+}
+
+.via-firenze-navbar__search-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   Mobile Hamburger Button (Hidden on Desktop)
+   ========================================================================== */
+#via-firenze-navbar .via-firenze-navbar__hamburger,
+.via-firenze-navbar__hamburger {
+    display: none !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 5px !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    outline: none !important;
+    z-index: 2;
+}
+
+.via-firenze-navbar__hamburger-line {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background-color: #ffffff;
+    border-radius: 1px;
+    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1), background-color var(--vf-transition);
+}
+
+/* Scrolled Hamburger lines turn Black */
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__hamburger-line,
+.via-firenze-navbar--scrolled .via-firenze-navbar__hamburger-line {
+    background-color: #000000 !important;
+}
+
+.via-firenze-navbar__hamburger--active .via-firenze-navbar__hamburger-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.via-firenze-navbar__hamburger--active .via-firenze-navbar__hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.via-firenze-navbar__hamburger--active .via-firenze-navbar__hamburger-line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Mobile Drawer Overlay
+   ========================================================================== */
+.via-firenze-navbar__mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.4s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.via-firenze-navbar__mobile-menu.via-firenze-navbar__mobile-menu--open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.via-firenze-navbar__mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    padding: 32px 28px 48px;
+    max-width: 440px;
+    margin: 0;
+}
+
+.via-firenze-navbar__mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--vf-border);
+}
+
+.via-firenze-navbar__mobile-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.via-firenze-navbar__mobile-close {
+    background: transparent !important;
+    border: none !important;
+    color: #ffffff !important;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.via-firenze-navbar__mobile-nav {
+    flex: 1;
+    padding: 36px 0;
+}
+
+.via-firenze-navbar__mobile-nav .via-firenze-navbar__menu-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
+}
+
+.via-firenze-navbar__mobile-nav .via-firenze-navbar__menu-list .menu-item {
+    width: 100%;
+}
+
+.via-firenze-navbar__mobile-nav .via-firenze-navbar__menu-list .menu-item a {
+    display: block;
+    padding: 16px 0;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2.2px;
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.via-firenze-navbar__mobile-nav .via-firenze-navbar__menu-list .menu-item a:hover {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+
+.via-firenze-navbar__mobile-footer {
+    padding-top: 24px;
+    border-top: 1px solid var(--vf-border);
+}
+
+.via-firenze-navbar__mobile-cart-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-decoration: none !important;
+    padding: 12px 0;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media screen and (max-width: 992px) {
+    .via-firenze-navbar__container {
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+    }
+
+    .via-firenze-navbar__nav {
+        display: none !important;
+    }
+
+    #via-firenze-navbar .via-firenze-navbar__hamburger,
+    .via-firenze-navbar__hamburger {
+        display: flex !important;
+        grid-column: 1 !important;
+        justify-self: start !important;
+    }
+
+    .via-firenze-navbar__logo {
+        grid-column: 2 !important;
+        justify-self: center !important;
+    }
+
+    .via-firenze-navbar__actions {
+        grid-column: 3 !important;
+        justify-self: end !important;
+    }
+
+    .via-firenze-navbar__mobile-menu {
+        display: block !important;
+    }
+
+    .via-firenze-navbar__logo-text {
+        font-size: 18px;
+        letter-spacing: 2.5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        --vf-navbar-height: 58px;
+    }
+
+    .via-firenze-navbar__container {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    .via-firenze-navbar__logo-text {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    .via-firenze-navbar__actions {
+        gap: 14px;
+    }
+}
+
+/* ==========================================================================
+   Body & Layout Zero Top Spacing (Removes White Strip / Gap above hero)
+   ========================================================================== */
+body.via-firenze-navbar-sticky-active {
+    padding-top: 0 !important;
+}
+
+html:not(.admin-bar),
+body:not(.admin-bar) {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+#page,
+.site,
+.hfeed,
+#content,
+.site-content,
+.ast-container,
+#primary,
+#main,
+.entry-content,
+.entry-header,
+.elementor {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Suppress Elementor's default container padding on first child / parent container */
+.elementor > .e-con:first-child,
+.elementor > .e-con:first-child > .e-con-inner,
+.elementor-element.e-con:first-of-type,
+.elementor-element.e-con:first-of-type > .e-con-inner,
+.e-con.e-parent:first-child,
+.e-con.e-parent:first-child > .e-con-inner,
+.e-con > .e-con-inner:first-child,
+.elementor-element-8ca65d4,
+.elementor-element-8ca65d4 > .e-con-inner,
+.luxury-hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-block-start: 0 !important;
+}
+
+/* Seamless dark background behind transparent hero */
+body.home,
+body.home #page,
+body.home .site-content {
+    background-color: #0b0b0b !important;
+}
+
+/* ==========================================================================
+   Theme Header Suppression (Ensures Clean Takeover)
+   ========================================================================== */
+.elementor-location-header,
+header.site-header,
+#masthead,
+header#masthead,
+.site-header,
+.main-header,
+#site-header,
+.ast-desktop-header,
+.ast-mobile-header,
+.ast-main-header-wrap,
+.elementor-section.elementor-section-header {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Print Styles */
+@media print {
+    .via-firenze-navbar {
+        display: none !important;
+    }
+}
