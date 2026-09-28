@@ -44,30 +44,39 @@
 /* ==========================================================================
    Main Header Container
    ========================================================================== */
+#via-firenze-navbar,
 .via-firenze-navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: var(--vf-navbar-height);
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: var(--vf-navbar-height) !important;
+    min-height: var(--vf-navbar-height) !important;
+    max-height: var(--vf-navbar-height) !important;
+    line-height: normal !important;
     background-color: transparent !important;
-    border-bottom: 1px solid var(--vf-border);
-    z-index: 99999;
-    transition: background-color var(--vf-transition), box-shadow var(--vf-transition), border-color var(--vf-transition);
+    border-bottom: 1px solid var(--vf-border) !important;
+    z-index: 99999 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    transition: background-color var(--vf-transition), box-shadow var(--vf-transition), border-color var(--vf-transition) !important;
 }
 
 /* Sticky Header */
+#via-firenze-navbar.via-firenze-navbar--sticky,
 .via-firenze-navbar--sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
 }
 
 /* ==========================================================================
    Scrolled Down State: Solid White Background & Dark Elements
    ========================================================================== */
+#via-firenze-navbar.via-firenze-navbar--scrolled,
 .via-firenze-navbar--scrolled {
     background-color: var(--vf-bg-scrolled) !important;
     border-bottom: 1px solid var(--vf-border-scrolled) !important;
@@ -75,93 +84,124 @@
 }
 
 /* WordPress Admin Bar Compatibility */
+.admin-bar #via-firenze-navbar.via-firenze-navbar--sticky,
 .admin-bar .via-firenze-navbar--sticky {
-    top: 32px;
+    top: 32px !important;
 }
 
 @media screen and (max-width: 782px) {
+    .admin-bar #via-firenze-navbar.via-firenze-navbar--sticky,
     .admin-bar .via-firenze-navbar--sticky {
-        top: 46px;
+        top: 46px !important;
     }
 }
 
 /* ==========================================================================
    Container - Perfectly Symmetrical Left/Right Spacing & Centered Center
-   Uses CSS Grid (1fr auto 1fr) for mathematical screen-center alignment
+   Uses CSS Grid (minmax(0, 1fr) auto minmax(0, 1fr)) for mathematical screen-center alignment
    ========================================================================== */
+#via-firenze-navbar .via-firenze-navbar__container,
 .via-firenze-navbar__container {
     display: grid !important;
-    grid-template-columns: 1fr auto 1fr !important;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important;
     align-items: center !important;
     height: 100% !important;
+    min-height: var(--vf-navbar-height) !important;
+    max-height: var(--vf-navbar-height) !important;
     width: 100% !important;
     max-width: 1600px !important;
     margin: 0 auto !important;
     padding-left: 48px !important;
     padding-right: 48px !important; /* Identical left & right spacing */
+    box-sizing: border-box !important;
 }
 
 /* ==========================================================================
    Column 1 (Left): Brand Logo (White on transparent, Black on scroll)
    ========================================================================== */
+#via-firenze-navbar .via-firenze-navbar__logo,
 .via-firenze-navbar__logo {
     grid-column: 1 !important;
     justify-self: start !important;
     display: inline-flex !important;
     align-items: center !important;
     text-decoration: none !important;
-    flex-shrink: 0;
+    flex-shrink: 0 !important;
+    height: 100% !important;
+    max-height: var(--vf-navbar-height) !important;
+    margin: 0 !important;
+    padding: 0 !important;
     transition: opacity var(--vf-transition);
-    z-index: 2;
+    z-index: 2 !important;
 }
 
+#via-firenze-navbar .via-firenze-navbar__logo:hover,
 .via-firenze-navbar__logo:hover {
-    opacity: 0.75;
+    opacity: 0.75 !important;
 }
 
+#via-firenze-navbar .via-firenze-navbar__logo-text,
 .via-firenze-navbar__logo-text {
-    font-size: 21px;
-    font-weight: 700;
-    letter-spacing: 3px;
+    font-size: 21px !important;
+    font-weight: 700 !important;
+    letter-spacing: 3px !important;
     color: var(--vf-text) !important;
-    text-transform: uppercase;
-    white-space: nowrap;
-    line-height: 1;
+    text-transform: uppercase !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
     transition: color var(--vf-transition);
 }
 
 /* Text Logo color change on scroll: turns black */
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__logo-text,
 .via-firenze-navbar--scrolled .via-firenze-navbar__logo-text {
     color: var(--vf-text-scrolled) !important;
 }
 
+/* Bulletproof Logo Image Styling Across ALL Pages */
+#via-firenze-navbar .via-firenze-navbar__logo-img,
+.via-firenze-navbar .via-firenze-navbar__logo-img,
+.via-firenze-navbar__logo img,
 .via-firenze-navbar__logo-img {
-    height: 26px;
-    width: auto;
-    object-fit: contain;
-    display: block;
+    height: 26px !important;
+    max-height: 26px !important;
+    min-height: 26px !important;
+    width: auto !important;
+    max-width: 220px !important;
+    object-fit: contain !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
     transition: opacity var(--vf-transition);
 }
 
 /* Image Logo: Default (White) Logo shown by default, Scrolled (Black) Logo hidden */
+#via-firenze-navbar .via-firenze-navbar__logo-img--default,
 .via-firenze-navbar .via-firenze-navbar__logo-img--default {
-    display: block;
+    display: block !important;
 }
 
+#via-firenze-navbar .via-firenze-navbar__logo-img--scrolled,
 .via-firenze-navbar .via-firenze-navbar__logo-img--scrolled {
-    display: none;
+    display: none !important;
 }
 
 /* Scrolled state: Show Black Scrolled Logo, Hide White Default Logo */
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__logo-img--default,
 .via-firenze-navbar--scrolled .via-firenze-navbar__logo-img--default {
     display: none !important;
 }
 
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__logo-img--scrolled,
 .via-firenze-navbar--scrolled .via-firenze-navbar__logo-img--scrolled {
     display: block !important;
 }
 
 /* Fallback: If only default logo was uploaded without a scrolled logo, automatically invert to black on scroll */
+#via-firenze-navbar.via-firenze-navbar--scrolled .via-firenze-navbar__logo:not(:has(.via-firenze-navbar__logo-img--scrolled)) .via-firenze-navbar__logo-img--default,
 .via-firenze-navbar--scrolled .via-firenze-navbar__logo:not(:has(.via-firenze-navbar__logo-img--scrolled)) .via-firenze-navbar__logo-img--default {
     display: block !important;
     filter: brightness(0) !important;
@@ -691,11 +731,13 @@
    Responsive Breakpoints
    ========================================================================== */
 @media screen and (max-width: 992px) {
+    #via-firenze-navbar .via-firenze-navbar__container,
     .via-firenze-navbar__container {
         padding-left: 24px !important;
         padding-right: 24px !important;
     }
 
+    #via-firenze-navbar .via-firenze-navbar__nav,
     .via-firenze-navbar__nav {
         display: none !important;
     }
@@ -707,23 +749,37 @@
         justify-self: start !important;
     }
 
+    #via-firenze-navbar .via-firenze-navbar__logo,
     .via-firenze-navbar__logo {
         grid-column: 2 !important;
         justify-self: center !important;
     }
 
+    #via-firenze-navbar .via-firenze-navbar__logo-img,
+    .via-firenze-navbar .via-firenze-navbar__logo-img,
+    .via-firenze-navbar__logo img,
+    .via-firenze-navbar__logo-img {
+        height: 24px !important;
+        max-height: 24px !important;
+        min-height: 24px !important;
+        width: auto !important;
+        max-width: 180px !important;
+    }
+
+    #via-firenze-navbar .via-firenze-navbar__actions,
     .via-firenze-navbar__actions {
         grid-column: 3 !important;
         justify-self: end !important;
     }
 
+    #via-firenze-navbar .via-firenze-navbar__mobile-menu,
     .via-firenze-navbar__mobile-menu {
         display: block !important;
     }
 
     .via-firenze-navbar__logo-text {
-        font-size: 18px;
-        letter-spacing: 2.5px;
+        font-size: 18px !important;
+        letter-spacing: 2.5px !important;
     }
 }
 
@@ -732,18 +788,39 @@
         --vf-navbar-height: 58px;
     }
 
+    #via-firenze-navbar,
+    .via-firenze-navbar,
+    #via-firenze-navbar .via-firenze-navbar__container,
+    .via-firenze-navbar__container {
+        height: 58px !important;
+        min-height: 58px !important;
+        max-height: 58px !important;
+    }
+
+    #via-firenze-navbar .via-firenze-navbar__container,
     .via-firenze-navbar__container {
         padding-left: 16px !important;
         padding-right: 16px !important;
     }
 
+    #via-firenze-navbar .via-firenze-navbar__logo-img,
+    .via-firenze-navbar .via-firenze-navbar__logo-img,
+    .via-firenze-navbar__logo img,
+    .via-firenze-navbar__logo-img {
+        height: 20px !important;
+        max-height: 20px !important;
+        min-height: 20px !important;
+        width: auto !important;
+        max-width: 150px !important;
+    }
+
     .via-firenze-navbar__logo-text {
-        font-size: 16px;
-        letter-spacing: 2px;
+        font-size: 16px !important;
+        letter-spacing: 2px !important;
     }
 
     .via-firenze-navbar__actions {
-        gap: 14px;
+        gap: 14px !important;
     }
 }
 
@@ -791,13 +868,6 @@ body:not(.admin-bar) {
     padding-block-start: 0 !important;
 }
 
-/* Seamless dark background behind transparent hero */
-body.home,
-body.home #page,
-body.home .site-content {
-    background-color: #0b0b0b !important;
-}
-
 /* ==========================================================================
    Theme Header Suppression (Ensures Clean Takeover)
    ========================================================================== */
@@ -815,8 +885,13 @@ header#masthead,
     display: none !important;
     height: 0 !important;
     min-height: 0 !important;
+    max-height: 0 !important;
     margin: 0 !important;
     padding: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
 }
 
 /* Print Styles */

@@ -3,7 +3,7 @@
  * Plugin Name: Via Firenze Navbar
  * Plugin URI: https://viafirenze.com
  * Description: Luxury minimalist navigation bar styled after high-end Italian fashion houses. Features brand logo, uppercase menu, live search overlay, and integrated WooCommerce cart.
- * Version: 2.0.2
+ * Version: 2.0.4
  * Author: Via Firenze
  * Author URI: https://viafirenze.com
  * Text Domain: via-firenze-navbar
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'VIA_FIRENZE_NAVBAR_VERSION', '2.0.2' );
+define( 'VIA_FIRENZE_NAVBAR_VERSION', '2.0.4' );
 define( 'VIA_FIRENZE_NAVBAR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'VIA_FIRENZE_NAVBAR_URL', plugin_dir_url( __FILE__ ) );
 
@@ -34,7 +34,7 @@ class Via_Firenze_Navbar {
     }
 
     private function __construct() {
-        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
+        add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ), 999 );
         add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
         add_action( 'admin_init', array( $this, 'register_settings' ) );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
@@ -55,6 +55,19 @@ class Via_Firenze_Navbar {
             array(),
             time()
         );
+
+        // Critical inline style to guarantee logo and navbar dimensions on all pages regardless of theme
+        $critical_css = '
+            #via-firenze-navbar, .via-firenze-navbar { height: 64px !important; min-height: 64px !important; max-height: 64px !important; box-sizing: border-box !important; }
+            #via-firenze-navbar .via-firenze-navbar__container, .via-firenze-navbar__container { height: 100% !important; min-height: 64px !important; max-height: 64px !important; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important; }
+            #via-firenze-navbar .via-firenze-navbar__logo, .via-firenze-navbar__logo { height: 100% !important; max-height: 64px !important; display: inline-flex !important; align-items: center !important; flex-shrink: 0 !important; }
+            #via-firenze-navbar .via-firenze-navbar__logo-img, .via-firenze-navbar .via-firenze-navbar__logo-img, .via-firenze-navbar__logo img, .via-firenze-navbar__logo-img { height: 26px !important; max-height: 26px !important; min-height: 26px !important; width: auto !important; max-width: 220px !important; object-fit: contain !important; display: block !important; margin: 0 !important; padding: 0 !important; }
+            @media screen and (max-width: 480px) {
+                #via-firenze-navbar, .via-firenze-navbar { height: 58px !important; min-height: 58px !important; max-height: 58px !important; }
+                #via-firenze-navbar .via-firenze-navbar__logo-img, .via-firenze-navbar .via-firenze-navbar__logo-img { height: 20px !important; max-height: 20px !important; min-height: 20px !important; }
+            }
+        ';
+        wp_add_inline_style( 'via-firenze-navbar-style', $critical_css );
 
         wp_enqueue_script(
             'via-firenze-navbar-script',
@@ -266,10 +279,10 @@ class Via_Firenze_Navbar {
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="via-firenze-navbar__logo<?php echo $logo_scrolled_url ? ' has-scrolled-logo' : ''; ?>" aria-label="<?php echo esc_attr( $site_name ); ?>">
                     <?php if ( $logo_url || $logo_scrolled_url ) : ?>
                         <?php if ( $logo_url ) : ?>
-                            <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" class="via-firenze-navbar__logo-img via-firenze-navbar__logo-img--default" />
+                            <img src="<?php echo esc_url( $logo_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" height="26" class="via-firenze-navbar__logo-img via-firenze-navbar__logo-img--default" style="height: 26px !important; max-height: 26px !important; min-height: 26px !important; width: auto !important; max-width: 220px !important; object-fit: contain !important; display: block !important;" />
                         <?php endif; ?>
                         <?php if ( $logo_scrolled_url ) : ?>
-                            <img src="<?php echo esc_url( $logo_scrolled_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" class="via-firenze-navbar__logo-img via-firenze-navbar__logo-img--scrolled" />
+                            <img src="<?php echo esc_url( $logo_scrolled_url ); ?>" alt="<?php echo esc_attr( $site_name ); ?>" height="26" class="via-firenze-navbar__logo-img via-firenze-navbar__logo-img--scrolled" style="height: 26px !important; max-height: 26px !important; min-height: 26px !important; width: auto !important; max-width: 220px !important; object-fit: contain !important;" />
                         <?php endif; ?>
                     <?php else : ?>
                         <span class="via-firenze-navbar__logo-text"><?php echo esc_html( $site_name ); ?></span>
